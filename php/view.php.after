@@ -1,8 +1,9 @@
 <?php
   $user = 'root';
-  $password = 'root';
+  $password = getenv('MYSQL_ROOT_PASSWORD');
   $dbName = 'chapter6_db';
-  $host = 'mysql:8889';
+  $dbServer = getenv('DB_SERVER');
+  $host = "{$dbServer}:8889";
   $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
 ?>
 
@@ -44,6 +45,7 @@
         echo "</table>";
       } catch( Exception $e ) {
         echo $e->getMessage();
+        echo $dsn;
         echo "<font size=5>" , "レコード一覧の取得に失敗しました" , "</font>";
         echo '<p><a href="../index.html">戻る</a></p>';
         exit();
